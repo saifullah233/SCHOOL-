@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const navToggle = document.getElementById("navToggle");
   const mainNav = document.getElementById("mainNav");
   const backToTop = document.getElementById("backToTop");
@@ -7,88 +7,63 @@ document.addEventListener("DOMContentLoaded", function () {
   const closePopup = document.getElementById("closePopup");
   const inquiryForm = document.getElementById("inquiryForm");
   const loaderOverlay = document.getElementById("loaderOverlay");
-  const counters = document.querySelectorAll("[data-target]");
-  const noticeTicker = document.getElementById("noticeTicker");
+  const siteHeader = document.getElementById("siteHeader");
 
   setTimeout(() => {
-    loaderOverlay.style.opacity = "0";
-    loaderOverlay.style.pointerEvents = "none";
-    setTimeout(() => loaderOverlay.remove(), 400);
-  }, 800);
+    if (loaderOverlay) {
+      loaderOverlay.style.opacity = "0";
+      loaderOverlay.style.pointerEvents = "none";
+      setTimeout(() => loaderOverlay.remove(), 400);
+    }
+  }, 850);
 
-  navToggle.addEventListener("click", () => {
-    mainNav.classList.toggle("active");
-  });
+  if (navToggle && mainNav) {
+    navToggle.addEventListener("click", () => {
+      mainNav.classList.toggle("active");
+      const expanded = mainNav.classList.contains("active");
+      navToggle.setAttribute("aria-expanded", expanded);
+    });
+  }
 
-  openAdmissionPopup.addEventListener("click", () => {
-    popupOverlay.classList.add("active");
-  });
+  if (openAdmissionPopup && popupOverlay) {
+    openAdmissionPopup.addEventListener("click", () => {
+      popupOverlay.classList.add("active");
+    });
+  }
 
-  closePopup.addEventListener("click", () => {
-    popupOverlay.classList.remove("active");
-  });
-
-  popupOverlay.addEventListener("click", (event) => {
-    if (event.target === popupOverlay) {
+  if (closePopup && popupOverlay) {
+    closePopup.addEventListener("click", () => {
       popupOverlay.classList.remove("active");
-    }
-  });
+    });
+  }
 
-  inquiryForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    alert(
-      "Thank you! Your admission enquiry has been received. We will contact you shortly.",
-    );
-    inquiryForm.reset();
-    popupOverlay.classList.remove("active");
-  });
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 320) {
-      backToTop.classList.add("show");
-    } else {
-      backToTop.classList.remove("show");
-    }
-  });
-
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  function animateCounters() {
-    counters.forEach((counter) => {
-      const target = +counter.dataset.target;
-      const current = +counter.innerText;
-      const increment = Math.ceil(target / 90);
-      if (current < target) {
-        counter.innerText = Math.min(current + increment, target);
-        setTimeout(animateCounters, 25);
+  if (popupOverlay) {
+    popupOverlay.addEventListener("click", (event) => {
+      if (event.target === popupOverlay) {
+        popupOverlay.classList.remove("active");
       }
     });
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounters();
-          observer.disconnect();
-        }
-      });
-    },
-    { threshold: 0.4 },
-  );
-
-  observer.observe(document.querySelector(".admission-panel"));
-
-  const tickerElements = Array.from(noticeTicker.querySelectorAll("span"));
-  let currentIndex = 0;
-
-  function rotateTicker() {
-    tickerElements.forEach((item, index) => {
-      item.style.animationDelay = `${index * 3}s`;
+  if (inquiryForm) {
+    inquiryForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      alert(
+        "Thank you! Your admission enquiry has been received. We will contact you shortly.",
+      );
+      inquiryForm.reset();
+      popupOverlay.classList.remove("active");
     });
   }
 
-  rotateTicker();
+  if (backToTop) {
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("show", window.scrollY > 320);
+      siteHeader.classList.toggle("scrolled", window.scrollY > 20);
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 });
