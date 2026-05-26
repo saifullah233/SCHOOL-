@@ -168,7 +168,34 @@
               guidance while preserving respect, integrity and a calm campus
               experience.
             </p>
-            <a href="#contact" class="btn btn-secondary">Read More About Us</a>
+            <button
+              type="button"
+              class="btn btn-secondary about-toggle"
+              id="aboutToggle"
+            >
+              Read More About Us
+            </button>
+            <div class="about-expand" id="aboutExpand" aria-hidden="true">
+              <p>
+                Our school history is rooted in a long-standing commitment to
+                quality education and respect for Bihar’s academic traditions.
+                Founded to serve the local community, we continue to honor the
+                legacy of disciplined teaching and strong learning values.
+              </p>
+              <p>
+                As an affiliated Bihar School Examination Board institution, our
+                programs follow board guidelines closely while offering a
+                supportive Hindi-medium environment. We deliver focused subject
+                coaching, board preparation and character education that helps
+                students grow confidently.
+              </p>
+              <p>
+                Discipline, academic excellence and moral development remain at
+                the center of every classroom, activity and student interaction.
+                Parents trust us for stable pathways from Class VI through Class
+                XII, with both Science and Arts streams available.
+              </p>
+            </div>
           </article>
 
           <article class="heritage-card">
@@ -239,7 +266,13 @@
               learning. Apply through a transparent admissions process designed
               for local families and serious students.
             </p>
-            <a href="#contact" class="btn btn-primary">Enquiry Form</a>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="openAdmissionPopup"
+            >
+              Enquiry Form
+            </button>
           </div>
           <div class="admissions-details">
             <ul>
@@ -438,12 +471,10 @@
                 </p>
               </article>
             </div>
-            <a
-              class="btn btn-primary"
-              href="https://wa.me/919308407447"
-              target="_blank"
-              >WhatsApp School</a
-            >
+            <p class="contact-action">
+              For quick admission support, message us on WhatsApp or call the
+              school office directly.
+            </p>
           </div>
           <div class="map-frame">
             <iframe
@@ -491,22 +522,13 @@
       </div>
     </footer>
 
-    <div class="float-actions">
-      <a
-        href="https://wa.me/919308407447"
-        target="_blank"
-        class="float-btn whatsapp"
-        aria-label="WhatsApp School"
-        >WhatsApp</a
-      >
-      <button
-        class="float-btn enquiry"
-        id="openAdmissionPopup"
-        aria-label="Open enquiry form"
-      >
-        Enquiry
-      </button>
-    </div>
+    <a
+      class="whatsapp-float"
+      href="https://wa.me/919308407447"
+      target="_blank"
+      aria-label="WhatsApp School"
+      >💬</a
+    >
 
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
       ↑
@@ -528,8 +550,9 @@
         <form id="inquiryForm">
           <label>Name<input type="text" name="name" required /></label>
           <label>Phone<input type="tel" name="phone" required /></label>
-          <label
-            >Class applying for<select name="class" required>
+          <label>
+            Class applying for
+            <select name="class" required>
               <option value="VI">Class VI</option>
               <option value="VII">Class VII</option>
               <option value="VIII">Class VIII</option>
@@ -537,8 +560,8 @@
               <option value="X">Class X</option>
               <option value="XI">Class XI</option>
               <option value="XII">Class XII</option>
-            </select></label
-          >
+            </select>
+          </label>
           <label
             >Email<input
               type="email"
@@ -546,6 +569,13 @@
               placeholder="name@example.com"
               required
           /></label>
+          <label
+            >Message<textarea
+              name="message"
+              rows="4"
+              placeholder="Write a brief enquiry or message"
+            ></textarea>
+          </label>
           <button type="submit" class="btn btn-primary">Submit Enquiry</button>
         </form>
       </div>

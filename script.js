@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const openAdmissionPopup = document.getElementById("openAdmissionPopup");
   const closePopup = document.getElementById("closePopup");
   const inquiryForm = document.getElementById("inquiryForm");
+  const aboutToggle = document.getElementById("aboutToggle");
+  const aboutExpand = document.getElementById("aboutExpand");
   const loaderOverlay = document.getElementById("loaderOverlay");
   const siteHeader = document.getElementById("siteHeader");
 
@@ -53,6 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       inquiryForm.reset();
       popupOverlay.classList.remove("active");
+    });
+  }
+
+  if (aboutToggle && aboutExpand) {
+    aboutToggle.addEventListener("click", () => {
+      const expanded = aboutExpand.classList.toggle("open");
+      aboutExpand.setAttribute("aria-hidden", !expanded);
+      aboutToggle.textContent = expanded ? "Show Less" : "Read More About Us";
     });
   }
 

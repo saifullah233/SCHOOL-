@@ -457,6 +457,26 @@ select {
   margin-top: 1rem;
 }
 
+.about-expand {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.35s ease;
+  margin-top: 1.2rem;
+}
+
+.about-expand.open {
+  max-height: 720px;
+  opacity: 1;
+}
+
+.about-expand p {
+  margin: 1rem 0;
+  color: var(--text-muted);
+}
+
 .heritage-profile {
   display: grid;
   grid-template-columns: 100px 1fr;
@@ -700,8 +720,16 @@ blockquote span {
   margin-bottom: 0.5rem;
 }
 
+.contact-action {
+  margin-top: 1rem;
+  color: var(--text-dark);
+  max-width: 32rem;
+  line-height: 1.7;
+}
+
 .map-frame {
-  min-height: 420px;
+  aspect-ratio: 16 / 10;
+  min-height: 280px;
   border-radius: 28px;
   overflow: hidden;
   box-shadow: 0 24px 45px rgba(15, 84, 43, 0.08);
@@ -710,7 +738,6 @@ blockquote span {
 .map-frame iframe {
   width: 100%;
   height: 100%;
-  min-height: 420px;
   border: 0;
 }
 
@@ -956,18 +983,6 @@ blockquote span {
     font-size: 2.4rem;
   }
 
-  .float-actions {
-    right: 1rem;
-    bottom: 5rem;
-  }
-
-  .float-btn {
-    width: 48px;
-    height: 48px;
-    font-size: 0.82rem;
-    padding: 0 0.8rem;
-  }
-
   .back-to-top {
     right: 1rem;
     bottom: 1rem;
@@ -1028,17 +1043,6 @@ blockquote span {
     text-align: center;
   }
 
-  .float-actions {
-    right: 0.75rem;
-    bottom: 4.25rem;
-  }
-
-  .float-btn {
-    width: 44px;
-    height: 44px;
-    padding: 0 0.7rem;
-  }
-
   .back-to-top {
     right: 0.75rem;
     bottom: 0.75rem;
@@ -1047,48 +1051,30 @@ blockquote span {
   }
 }
 
-.float-actions {
+.whatsapp-float {
   position: fixed;
-  right: 1.25rem;
-  bottom: 5.75rem;
-  display: grid;
-  gap: 0.9rem;
-  z-index: 60;
-}
-
-.float-btn {
-  width: 56px;
-  height: 56px;
+  right: 1rem;
+  bottom: 5.5rem;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  border: 0;
-  background: var(--deep-green);
-  color: #fff;
-  box-shadow: 0 18px 30px rgba(11, 93, 59, 0.2);
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.float-btn:hover {
-  transform: translateY(-2px);
-}
-
-.float-btn.whatsapp {
   background: linear-gradient(135deg, #25d366, #128c7e);
-  width: auto;
-  padding: 0 1rem;
-  border-radius: 999px;
-  font-size: 0.9rem;
+  box-shadow: 0 18px 30px rgba(10, 50, 27, 0.2);
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.35rem;
+  z-index: 60;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.float-btn.enquiry {
-  background: var(--gold);
-  color: var(--dark-green);
-  width: auto;
-  padding: 0 1rem;
-  border-radius: 999px;
-  font-size: 0.9rem;
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 35px rgba(10, 50, 27, 0.28);
 }
 
 .back-to-top {
@@ -1143,6 +1129,25 @@ blockquote span {
   padding: 2rem 2.2rem;
   position: relative;
   box-shadow: 0 32px 80px rgba(10, 46, 27, 0.18);
+  transform: translateY(20px) scale(0.98);
+  opacity: 0;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.popup-overlay.active .popup-modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.popup-modal textarea {
+  border: 1px solid rgba(11, 93, 59, 0.12);
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+  background: #f8f4ea;
+  font: inherit;
+  resize: vertical;
 }
 
 .close-popup {
